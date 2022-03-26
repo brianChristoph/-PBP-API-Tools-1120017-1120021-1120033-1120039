@@ -31,7 +31,7 @@ func sendMail(to []string, cc []string, subject, message string) error {
     return nil
 }
 
-func CreateMail(){
+func GoMail(){
     to := []string{"matthewhariady3@gmail.com"}
     cc := []string{"if-20021@students.ithb.ac.id"}
     subject := "Test mail"
