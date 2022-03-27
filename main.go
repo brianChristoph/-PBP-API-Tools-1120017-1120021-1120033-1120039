@@ -30,5 +30,8 @@ func CronConcept() {
 }
 
 func main() {
+	GoRoutine()
+	// WithoutGoRoutine()
+	GoMail()
 	CronConcept()
 }
