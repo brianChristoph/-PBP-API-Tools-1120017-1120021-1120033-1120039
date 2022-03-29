@@ -44,7 +44,8 @@ func RedisMain() {
 	}
 	log.Println("set operation success")
 
-	time.Sleep(time.Duration(4) * time.Second)
+	// untuk nge tes code yang 3 detik kita set sebelumnya
+	// time.Sleep(time.Duration(4) * time.Second)
 
 	// get data
 	op2 := rdb.Get(context.Background(), key)
