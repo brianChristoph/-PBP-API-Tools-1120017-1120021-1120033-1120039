@@ -8,9 +8,9 @@ import (
 func main() {
 	cons.GoRoutine()
 	// cons.WithoutGoRoutine()
-	// time.Sleep(time.Minute)
 	// cons.GoMail()
 	// cons.CronConcept1()
-	// CronConcept2()
+	// cons.CronConcept2(
+	// time.Sleep(time.Minute)
 	// cons.RedisMain()
 }
