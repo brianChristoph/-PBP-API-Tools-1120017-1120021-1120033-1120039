@@ -6,9 +6,9 @@ import (
 
 func main() {
 	cons.GoRoutine()
-	// WithoutGoRoutine()
-	cons.GoMail()
-	cons.CronConcept1()
-	// CronConcept2()
-	cons.RedisMain()
+	// cons.WithoutGoRoutine()
+	// cons.GoMail()
+	// cons.CronConcept1()
+	// cons.CronConcept2()
+	// cons.RedisMain()
 }
