@@ -80,4 +80,5 @@ func main() {
 	GoMail()
 	CronConcept1()
 	// CronConcept2()
+	redismain()
 }
