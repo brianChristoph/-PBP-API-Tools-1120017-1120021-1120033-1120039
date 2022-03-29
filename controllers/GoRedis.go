@@ -9,6 +9,12 @@ import (
 	"github.com/go-redis/redis/v8"
 )
 
+/*
+	Redis, singkatan dari Remote Dictionary Server, adalah penyimpanan data nilai utama di dalam memori yang super cepat.
+	Umumnya Redis dimanfaatkan sebagai database, cache, manajemen session, message broker, queue, dan
+	jenis kebutuhan lainnya yg relevan dengan operasi real-time dan temporary data.
+*/
+
 func newRedisClient(host string, password string) *redis.Client {
 	client := redis.NewClient(&redis.Options{
 		Addr:     host,
@@ -18,7 +24,7 @@ func newRedisClient(host string, password string) *redis.Client {
 	return client
 }
 
-func redismain() {
+func RedisMain() {
 	var redisHost = "localhost:6379"
 	var redisPassword = ""
 

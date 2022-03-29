@@ -22,8 +22,12 @@ func sendMail(to []string, cc []string, subject, message string) error {
 
 	auth := smtp.PlainAuth("", CONFIG_AUTH_EMAIL, CONFIG_AUTH_PASSWORD, CONFIG_SMTP_HOST)
 	smtpAddr := fmt.Sprintf("%s:%d", CONFIG_SMTP_HOST, CONFIG_SMTP_PORT)
+	//auth = menampung credentials untuk keperluan otentikasi ke mail server
+	//CONFIG_AUTH_EMAIL, adalah alamat email yang digunakan untuk mengirim email.
+	//smtpAddr = untuk kombinasi host dan port mail server
 
 	err := smtp.SendMail(smtpAddr, auth, CONFIG_AUTH_EMAIL, append(to, cc...), []byte(body))
+	//sendMail() digunakan untuk mengirim email. Empat data yang disisipkan pada fungsi tersebut dijadikan satu dalam format tertentu, lalu disimpan ke variabel body.
 	if err != nil {
 		return err
 	}
