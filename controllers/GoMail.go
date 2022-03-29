@@ -24,6 +24,7 @@ func sendMail(to []string, cc []string, subject, message string) error {
 	smtpAddr := fmt.Sprintf("%s:%d", CONFIG_SMTP_HOST, CONFIG_SMTP_PORT)
 	//auth = menampung credentials untuk keperluan otentikasi ke mail server
 	//CONFIG_AUTH_EMAIL, adalah alamat email yang digunakan untuk mengirim email.
+	//CONFIG_AUTH_PASSWORD, adalah password alamat email yang digunakan untuk mengirim email.
 	//smtpAddr = untuk kombinasi host dan port mail server
 
 	err := smtp.SendMail(smtpAddr, auth, CONFIG_AUTH_EMAIL, append(to, cc...), []byte(body))
