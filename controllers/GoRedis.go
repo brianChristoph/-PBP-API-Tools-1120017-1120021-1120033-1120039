@@ -31,11 +31,12 @@ func RedisMain() {
 	rdb := newRedisClient(redisHost, redisPassword)
 	fmt.Println("redis client initialized")
 
-	key := "key-1"
+	key := "tugas pbp"
 	data := "Hello Redis"
 	ttl := time.Duration(3) * time.Second
 
 	// store data using SET command
+	//atau kita bisa simpen datanya dulu
 	op1 := rdb.Set(context.Background(), key, data, ttl)
 	if err := op1.Err(); err != nil {
 		fmt.Printf("unable to SET data. error: %v", err)
