@@ -1,14 +1,12 @@
-package main
+package controllers
 
 import (
 	"fmt"
 	"log"
 	"time"
 
-	cons "PBP-API-Tools-1120017-1120021-1120033-1120039/controllers"
-
 	"github.com/go-co-op/gocron"
-	"github.com/robfig/cron/v3"
+	"github.com/robfig/cron"
 )
 
 func task() {
@@ -74,13 +72,4 @@ func CronConcept2() {
 	c.AddFunc("@hourly", func() { fmt.Println("Every hour") })
 	c.Start() // Funcs are invoked in their own goroutine, asynchronously.
 	c.Stop()  // Stop the scheduler (does not stop any jobs already running).
-}
-
-func main() {
-	// GoRoutine()
-	// WithoutGoRoutine()
-	cons.GoMail()
-	// CronConcept1()
-	// CronConcept2()
-	// redismain()
 }
