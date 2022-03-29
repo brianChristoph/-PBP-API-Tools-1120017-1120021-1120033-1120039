@@ -37,6 +37,7 @@ func RedisMain() {
 
 	// store data using SET command
 	//atau kita bisa simpen datanya dulu
+	//context background = kaya countainer atau tempat keydatattl bersatu
 	op1 := rdb.Set(context.Background(), key, data, ttl)
 	if err := op1.Err(); err != nil {
 		fmt.Printf("unable to SET data. error: %v", err)
@@ -45,6 +46,7 @@ func RedisMain() {
 	log.Println("set operation success")
 
 	// untuk nge tes code yang 3 detik kita set sebelumnya
+
 	// time.Sleep(time.Duration(4) * time.Second)
 
 	// get data
