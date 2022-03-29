@@ -5,10 +5,10 @@ import (
 )
 
 func main() {
-	// cons.GoRoutine()
+	cons.GoRoutine()
 	// WithoutGoRoutine()
 	// cons.GoMail()
 	// cons.CronConcept1()
 	// CronConcept2()
-	cons.RedisMain()
+	// cons.RedisMain()
 }
