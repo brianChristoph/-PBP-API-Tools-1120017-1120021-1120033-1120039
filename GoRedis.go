@@ -3,67 +3,52 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
+	"time"
 
 	"github.com/go-redis/redis/v8"
 )
 
-var ctx = context.Background()
-
-func ExampleClient() {
-	rdb := redis.NewClient(&redis.Options{
-		Addr:     "localhost:8080",
-		Password: "", // no password set
-		DB:       0,  // use default DB
+func newRedisClient(host string, password string) *redis.Client {
+	client := redis.NewClient(&redis.Options{
+		Addr:     host,
+		Password: password,
+		DB:       0,
 	})
-
-	err := rdb.Set(ctx, "key", "value", 0).Err()
-	if err != nil {
-		panic(err)
-	}
-
-	val, err := rdb.Get(ctx, "key").Result()
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println("key", val)
-
-	val2, err := rdb.Get(ctx, "key2").Result()
-	if err == redis.Nil {
-		fmt.Println("key2 does not exist")
-	} else if err != nil {
-		panic(err)
-	} else {
-		fmt.Println("key2", val2)
-	}
-	// Output: key value
-	// key2 does not exist
+	return client
 }
 
-// SET key value EX 10 NX
-set, err := rdb.SetNX(ctx, "key", "value", 10*time.Second).Result()
+func redismain() {
+	var redisHost = "localhost:6379"
+	var redisPassword = ""
 
-// SET key value keepttl NX
-set, err := rdb.SetNX(ctx, "key", "value", redis.KeepTTL).Result()
+	rdb := newRedisClient(redisHost, redisPassword)
+	fmt.Println("redis client initialized")
 
-// SORT list LIMIT 0 2 ASC
-vals, err := rdb.Sort(ctx, "list", &redis.Sort{Offset: 0, Count: 2, Order: "ASC"}).Result()
+	key := "key-1"
+	data := "Hello Redis"
+	ttl := time.Duration(3) * time.Second
 
-// ZRANGEBYSCORE zset -inf +inf WITHSCORES LIMIT 0 2
-vals, err := rdb.ZRangeByScoreWithScores(ctx, "zset", &redis.ZRangeBy{
-    Min: "-inf",
-    Max: "+inf",
-    Offset: 0,
-    Count: 2,
-}).Result()
+	// store data using SET command
+	op1 := rdb.Set(context.Background(), key, data, ttl)
+	if err := op1.Err(); err != nil {
+		fmt.Printf("unable to SET data. error: %v", err)
+		return
+	}
+	log.Println("set operation success")
 
-// ZINTERSTORE out 2 zset1 zset2 WEIGHTS 2 3 AGGREGATE SUM
-vals, err := rdb.ZInterStore(ctx, "out", &redis.ZStore{
-    Keys: []string{"zset1", "zset2"},
-    Weights: []int64{2, 3}
-}).Result()
+	time.Sleep(time.Duration(4) * time.Second)
 
-// EVAL "return {KEYS[1],ARGV[1]}" 1 "key" "hello"
-vals, err := rdb.Eval(ctx, "return {KEYS[1],ARGV[1]}", []string{"key"}, "hello").Result()
-
-// custom command
-res, err := rdb.Do(ctx, "set", "key", "value").Result()
+	// get data
+	op2 := rdb.Get(context.Background(), key)
+	if err := op2.Err(); err != nil {
+		fmt.Printf("unable to GET data. error: %v", err)
+		return
+	}
+	res, err := op2.Result()
+	if err != nil {
+		fmt.Printf("unable to GET data. error: %v", err)
+		return
+	}
+	log.Println("get operation success. result:", res)
+}
