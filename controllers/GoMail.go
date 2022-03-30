@@ -9,9 +9,9 @@ import (
 
 const CONFIG_SMTP_HOST = "smtp.gmail.com"
 const CONFIG_SMTP_PORT = 587
-const CONFIG_SENDER_NAME = "Matthew Evans <matthewhariady2@gmail.com>"
-const CONFIG_AUTH_EMAIL = "matthewhariady2@gmail.com"
-const CONFIG_AUTH_PASSWORD = "informatika20021"
+const CONFIG_SENDER_NAME = " <....@gmail.com>"
+const CONFIG_AUTH_EMAIL = ""
+const CONFIG_AUTH_PASSWORD = ""
 
 func sendMail(to []string, cc []string, subject, message string) error {
 	body := "From: " + CONFIG_SENDER_NAME + "\n" +
@@ -37,8 +37,8 @@ func sendMail(to []string, cc []string, subject, message string) error {
 }
 
 func GoMail() {
-	to := []string{"matthewhariady3@gmail.com"}
-	cc := []string{"if-20021@students.ithb.ac.id"}
+	to := []string{""}
+	cc := []string{""}
 	subject := "Test mail"
 	message := "Ini Percobaan Go Mail !!"
 
