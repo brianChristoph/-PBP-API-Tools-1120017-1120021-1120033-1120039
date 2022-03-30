@@ -10,7 +10,6 @@ func main() {
 	// cons.WithoutGoRoutine()
 	// cons.GoMail()
 	// cons.CronConcept1()
-	// CronConcept2()
 	// cons.CronConcept2(
 	// time.Sleep(time.Minute)
 	// cons.RedisMain()
