@@ -5,7 +5,6 @@ go 1.17
 require (
 	github.com/go-co-op/gocron v1.13.0
 	github.com/go-redis/redis/v8 v8.11.5
-	github.com/robfig/cron v1.2.0
 )
 
 require (
